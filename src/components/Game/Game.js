@@ -45,7 +45,6 @@ function Game() {
   function addGuess(guess) {
     if (guess === answer) {
       setGameStatus("won");
-      return;
     }
 
     setGuesses([...guesses, guess]);
