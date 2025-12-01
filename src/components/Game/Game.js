@@ -2,6 +2,8 @@ import React from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
+import { checkGuess } from "../../game-helpers";
+
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
 
@@ -17,9 +19,11 @@ function Game() {
     setGuesses([...guesses, guess]);
   }
 
+  let checkedGuesses = guesses.map((guess) => checkGuess(guess, answer));
+
   return (
     <>
-      <GuessResults guesses={guesses} />
+      <GuessResults guesses={checkedGuesses} />
       <GuessInput addGuess={addGuess} />
     </>
   );
