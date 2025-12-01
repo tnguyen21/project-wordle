@@ -24,7 +24,7 @@ function HappyBanner(guesses) {
   );
 }
 
-function SadBanner(answer) {
+function SadBanner({ answer }) {
   return (
     <div className="sad banner">
       <p>
@@ -53,18 +53,12 @@ function Game() {
 
   let checkedGuesses = guesses.map((guess) => checkGuess(guess, answer));
 
-  let banner = undefined;
-  if (gameStatus === "won") {
-    banner = HappyBanner(guesses);
-  } else if (gameStatus === "loss") {
-    banner = SadBanner(answer);
-  }
-
   return (
     <>
       <GuessResults guesses={checkedGuesses} />
       <GuessInput addGuess={addGuess} gameStatus={gameStatus} />
-      {banner}
+      {gameStatus === "won" && <HappyBanner guesses={guesses} />}
+      {gameStatus === "loss" && <SadBanner answer={answer} />}
     </>
   );
 }
